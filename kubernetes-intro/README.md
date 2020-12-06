@@ -14,7 +14,7 @@ docker https://docs.docker.com/get-docker/
 ```bash
 minikube start --driver=docker
 ```
-![minikube_start](https://github.com/1Psy/k8s_platform/img/k8s_into/minikube_start.png)
+![minikube_start](https://github.com/1Psy/k8s_platform/blob/main/img/k8s_intro/minikube_start.png)
 
 
 ```bash
@@ -31,10 +31,10 @@ kubectl get cs # Проверка состояния системных комп
 Почему все pod в namespace kube-system восстановились после удаления.
 Поды запущены как [статик поды]: https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/ и управляются управляются напрямую kubelet.
 
-![static_pods](https://github.com/1Psy/k8s_platform/img/k8s_into/static_pods.png)
+![static_pods](https://github.com/1Psy/k8s_platform/blob/main/img/k8s_intro/static_pods.png)
 
 Под coredns запущен как deployment и при удалении запускается снова.
-![coredns_deployment](https://github.com/1Psy/k8s_platform/img/k8s_into/coredns_deployment.png)
+![coredns_deployment](https://github.com/1Psy/k8s_platform/blob/main/img/k8s_intro/coredns_deployment.png)
 
 
 ## Создать Dockerfile:
@@ -120,7 +120,7 @@ spec:
 
 ## Как проверить работоспособность:
 
-![run_pod_init](https://github.com/1Psy/k8s_platform/img/k8s_into/run_pod_init.png)
+![run_pod_init](https://github.com/1Psy/k8s_platform/blob/main/img/k8s_intro/run_pod_init.png)
 
 ```bash
 kubectl delete pod web           #Удалим старый под.
