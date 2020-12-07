@@ -30,7 +30,7 @@ kubectl get cs # Проверка состояния системных комп
 ## Задание.
 Почему все pod в namespace kube-system восстановились после удаления.
 
-Поды запущены как [статик поды]: https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/ и управляются управляются напрямую kubelet.
+Поды запущены как [статик поды](https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/) и управляются управляются напрямую kubelet.
 
 ![static_pods](https://github.com/1Psy/k8s_platform/blob/main/img/k8s_intro/static_pods.png)
 
