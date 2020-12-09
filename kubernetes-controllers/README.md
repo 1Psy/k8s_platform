@@ -137,7 +137,7 @@ kubectl describe pod -l app=frontend | grep Image:
 ```
 Поды перезапустились с новым тегом образа.
 
-![replicaset_frontend_pod_0.2](https://github.com/1Psy/k8s_platform/blob/main/img/k8s_controllers/eplicaset_frontend_pod_0.2.png)
+![replicaset_frontend_pod_0.2](https://github.com/1Psy/k8s_platform/blob/main/img/k8s_controllers/replicaset_frontend_pod_0.2.png)
 
 
 # Deployment
@@ -312,6 +312,7 @@ kubectl apply -f frontend-deployment.yaml
 kubectl get pods -l app=frontend 
 ```
 Проверка завершилась успешно и под был запущен.
+
 ![probe_frontend_ok](https://github.com/1Psy/k8s_platform/blob/main/img/k8s_controllers/probe_frontend_ok.png)
 
 Посмотрим описание проверки и ее параметры.
