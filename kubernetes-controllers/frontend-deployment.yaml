@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontendservice
+        image: travk/hipster-frontend:0.2
+        readinessProbe:
+          initialDelaySeconds: 10
+          httpGet:
+            path: "/_healthz"
+            port: 8080
+            httpHeaders:
+            - name: "Cookie"
+              value: "shop_session-id=x-readiness-probe"
+        env:
+        - name: PRODUCT_CATALOG_SERVICE_ADDR
+          value: "null"
+        - name: CURRENCY_SERVICE_ADDR
+          value: "null"
+        - name: CART_SERVICE_ADDR
+          value: "null"
+        - name: RECOMMENDATION_SERVICE_ADDR
+          value: "null"
+        - name: SHIPPING_SERVICE_ADDR
+          value: "null"
+        - name: CHECKOUT_SERVICE_ADDR
+          value: "null"
+        - name: AD_SERVICE_ADDR
+          value: "null"
