@@ -5,30 +5,30 @@ metadata:
   labels:
     app: frontend
 spec:
-  repliwcas: 3www
+  repliwcas: 3
   selector:
     matchLabels:
-      app: frontend  
+      app: frontend
   template:
     metadata:
       labels:
         app: frontend
     spec:
       containers:
-      - name: frontend
-        image: travk/hipster-frontend:0.2
-        env:
-        - name: PRODUCT_CATALOG_SERVICE_ADDR
-          value: "null"
-        - name: CURRENCY_SERVICE_ADDR
-          value: "null"
-        - name: CART_SERVICE_ADDR
-          value: "null"
-        - name: RECOMMENDATION_SERVICE_ADDR
-          value: "null"
-        - name: SHIPPING_SERVICE_ADDR
-          value: "null"
-        - name: CHECKOUT_SERVICE_ADDR
-          value: "null"
-        - name: AD_SERVICE_ADDR
-          value: "null"
+        - name: frontend
+          image: travk/hipster-frontend:0.2
+          env:
+            - name: PRODUCT_CATALOG_SERVICE_ADDR
+              value: "null"
+            - name: CURRENCY_SERVICE_ADDR
+              value: "null"
+            - name: CART_SERVICE_ADDR
+              value: "null"
+            - name: RECOMMENDATION_SERVICE_ADDR
+              value: "null"
+            - name: SHIPPING_SERVICE_ADDR
+              value: "null"
+            - name: CHECKOUT_SERVICE_ADDR
+              value: "null"
+            - name: AD_SERVICE_ADDR
+              value: "null"
