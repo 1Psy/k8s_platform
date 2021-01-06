@@ -651,9 +651,9 @@ nginx.ingress.kubernetes.io/canary-by-header: "canary" #Установив heade
 ### Передадим header **canary=always**
 ![canary_always](https://github.com/1Psy/k8s_platform/blob/main/img/kubernetes-networks/canary_always.png)
 
-Все 100% запросов уходят на canary сервис deploy-2.
+Все *100%* запросов уходят на **canary** сервис **deploy-2**.
 
 ### Передадим header **canary=never**
 ![canary_never](https://github.com/1Psy/k8s_platform/blob/main/img/kubernetes-networks/canary_never.png)
 
-Все 100% запросов не попадают на canary сервис и уходят на deploy-1.
+Все *100%* запросов не попадают на **canary** сервис и уходят на **deploy-1**.
