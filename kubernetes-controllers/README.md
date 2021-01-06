@@ -222,10 +222,11 @@ paymentservice-deployment-reverse.yaml
   1. Развертывание трех новых pod
   2. Удаление трех старых pod
 
+**RollingUpdate** - Стратигия плавного обновления подов, конфигурируется с помощью [параметров](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy)
 
 ```yaml
   strategy:
-    type: RollingUpdate #Стратигия плавного обновления подов, конфигурируется с помощью [параметров](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy)
+    type: RollingUpdate 
     rollingUpdate:
       maxSurge: 100%    #Колличество подов сверх желаемого кол-ва.
       maxUnavailable: 0 #Колличество подов недоступных в процессе обновления.

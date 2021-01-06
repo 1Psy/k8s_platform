@@ -1,13 +1,11 @@
 # Подготовка.
 Установим следующее ПО:
-```bash
-kubectl https://kubernetes.io/docs/tasks/tools/install-kubectl/ 
-kubectl-autocomplete https://kubernetes.io/docs/reference/kubectl/cheatsheet/#kubectl-autocomplete
-minikube https://kubernetes.io/docs/tasks/tools/install-minikube/
-k9s https://github.com/derailed/k9s
-Kube Forwarder https://kube-forwarder.pixelpoint.io/
-docker https://docs.docker.com/get-docker/
-```
+* [**kubectl**](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+* [**kubectl-autocomplete**](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#kubectl-autocomplete)
+* [**minikube**](https://kubernetes.io/docs/tasks/tools/install-minikube/)
+* [**k9s**](https://github.com/derailed/k9s)
+* [**Kube Forwarder**](https://kube-forwarder.pixelpoint.io/)
+* [**docker**](https://docs.docker.com/get-docker/)
 
 # Запуск minikube.
 Запустим minikube с использованием docker driver.
@@ -21,7 +19,7 @@ minikube start --driver=docker
 kubectl cluster-info #Проверка подключения к кластеру.
 minikube ssh #Зайти на контейнер с миникубом.
 docker ps #Список всех запущенных контейнеров.
-docker rm -f $(docker ps -a -q) #Удалим все контейнеры и дождемся их восстановления.
+docker rm -f $(docker ps -a -q) #Удалим все контейнеры на ноде и дождемся их восстановления..
 kubectl get pods -n kube-system # Все системные компоненты k8s в виде подов.
 kubectl delete pod --all -n kube-system #Удалить все системные компоненты k8s и дождаться их восстановления.
 kubectl get cs # Проверка состояния системных компонентов кластера.
@@ -30,22 +28,23 @@ kubectl get cs # Проверка состояния системных комп
 ## Задание.
 Почему все pod в namespace kube-system восстановились после удаления.
 
-Поды запущены как [статик поды](https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/) и управляются управляются напрямую kubelet.
+Поды запущены как [статик поды](https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/) и управляются управляются напрямую **kubelet**.
 
 ![static_pods](https://github.com/1Psy/k8s_platform/blob/main/img/k8s_intro/static_pods.png)
 
-Под coredns запущен как deployment и при удалении запускается снова.
+Под **coredns** запущен как **deployment** и при удалении запускается снова.
 ![coredns_deployment](https://github.com/1Psy/k8s_platform/blob/main/img/k8s_intro/coredns_deployment.png)
 
 
 ## Создать Dockerfile:
-Для выполнения домашней работы необходимо создать Dockerfile, в котором будет описан образ:
-1. Запускающий web-сервер на порту 8000 (можно использовать любой способ)
+Для выполнения домашней работы необходимо создать **Dockerfile**, в котором будет описан образ:
+1. Запускающий web-сервер на порту **8000** (можно использовать любой способ)
 2. Отдающий содержимое директории /app внутри контейнера.
-3. Работающий с UID 1001
+3. Работающий с **UID 1001**
 
 ## Сборка образа и пуш в registry.
 ```bash
+cd web/ #Переёдем в папку с Dockerfile и файлами для сборки.
 docker build -t travk/web:0.1 .
 docker push travk/web:0.1
 ```
@@ -149,9 +148,12 @@ kubectl run frontend --image travk/hipster-frontend:0.1 --restart=Never --dry-ru
 > frontend-pod.yaml #Перенаправление вывода в файл
 ```
 ## Выясните причину, по которой pod frontend находится в статусе Error
+###  Проверим логи пода.
 ```bash
-kubectl logs frontend #Проверим логи пода.
-#Cервис не может запутиться т.к не заданы перменные.
+kubectl logs frontend
+```
+### Cервис не может запутиться т.к не заданы перменные.
+```bash
 panic: environment variable "PRODUCT_CATALOG_SERVICE_ADDR" not set
 ```
 ## Создадим новый манифест frontend-pod-healthy.yaml с добавленными env.

@@ -5,7 +5,7 @@ metadata:
   labels:
     app: frontend
 spec:
-  replicas: 3
+  repliwcas: 3www
   selector:
     matchLabels:
       app: frontend  
