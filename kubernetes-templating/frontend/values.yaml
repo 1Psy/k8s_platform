@@ -1,0 +1,24 @@
+replicaCount: 1
+
+image:
+  tag: v0.1.5
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+  NodePort: 30001
+
+ingress:
+  enabled: true
+  annotations: 
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+  hosts:
+    - host: shop.34.91.159.205.nip.io
+      paths: 
+      - path: /
+  tls: 
+    - secretName: shop.34.91.159.205.nip.io
+      hosts:
+        - shop.34.91.159.205.nip.io

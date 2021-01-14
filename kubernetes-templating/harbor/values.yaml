@@ -1,0 +1,21 @@
+expose:
+  type: ingress
+  tls:
+    enabled: true
+    certSource: secret
+    secret:
+      secretName: "harbor.34.91.159.205.nip.io"
+  ingress:
+    hosts:
+      core: harbor.34.91.159.205.nip.io
+    controller: nginx
+    annotations:
+      ingress.kubernetes.io/ssl-redirect: "true"
+      ingress.kubernetes.io/proxy-body-size: "0"
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      nginx.ingress.kubernetes.io/proxy-body-size: "0"
+      cert-manager.io/cluster-issuer: "letsencrypt-prod"
+externalURL: https://harbor.34.91.159.205.nip.io
+notary:
+  enabled: false
+

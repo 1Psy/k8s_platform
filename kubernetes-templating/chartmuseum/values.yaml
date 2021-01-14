@@ -1,0 +1,20 @@
+## Ingress for load balancer
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+#    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+## Chartmuseum Ingress hostnames
+## Must be provided if Ingress is enabled
+##
+  hosts:
+    - name: chartmuseum.34.91.159.205.xip.io
+      path: /
+      tls: true
+      tlsSecret: chartmuseum.34.91.159.205.xip.io
+
+env:
+  open:
+    # disable all routes prefixed with /api
+    DISABLE_API: false

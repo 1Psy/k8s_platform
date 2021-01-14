@@ -4,6 +4,24 @@
 * [**kubectl-autocomplete**](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#kubectl-autocomplete)
 * [**minikube**](https://kubernetes.io/docs/tasks/tools/install-minikube/)
 * [**k9s**](https://github.com/derailed/k9s)
+```bash
+wget https://github.com/derailed/k9s/releases/download/v0.24.2/k9s_Linux_x86_64.tar.gz
+tar xzvf k9s_Linux_x86_64.tar.gz
+chmod +x ./k9s
+sudo mv ./k9s /usr/local/bin/k9s
+ ```
+* [**kubectx / kubens**](https://github.com/ahmetb/kubectx)
+```bash
+wget https://github.com/ahmetb/kubectx/releases/download/v0.9.1/kubectx_v0.9.1_linux_x86_64.tar.gz
+tar xzvf kubectx_v0.9.1_linux_x86_64.tar.gz
+chmod +x ./kubectx
+sudo mv ./kubectx /usr/local/bin/kubectx
+
+wget https://github.com/ahmetb/kubectx/releases/download/v0.9.1/kubens_v0.9.1_linux_x86_64.tar.gz
+tar xzvf kubens_v0.9.1_linux_x86_64.tar.gz
+chmod +x ./kubens
+sudo mv ./kubens /usr/local/bin/kubens
+```
 * [**Kube Forwarder**](https://kube-forwarder.pixelpoint.io/)
 * [**docker**](https://docs.docker.com/get-docker/)
 

@@ -1,0 +1,45 @@
+helmDefaults:
+  wait: true
+  timeout: 600
+  # when using helm 3.2+, automatically create release namespaces if they do not exist (default true)
+  createNamespace: true
+#  verify: true
+repositories:
+  - name: ingress-nginx
+    url: https://kubernetes.github.io/ingress-nginx
+  - name: jetstack
+    url: https://charts.jetstack.io
+  - name: harbor
+    url: https://helm.goharbor.io
+
+releases:
+  - name: nginx-ingress
+    namespace: nginx-ingress
+    chart: ingress-nginx/ingress-nginx
+    version: 3.19.0
+
+  - name: cert-manager
+    namespace: cert-manager
+    chart: jetstack/cert-manager
+    version: v1.1.0
+    hooks:
+      - events: ["presync"]
+        showlogs: true
+        command: "kubectl"
+        args:
+          [
+            "apply",
+            "-f",
+            "https://github.com/jetstack/cert-manager/releases/download/v1.1.0/cert-manager.crds.yaml",
+          ]
+      - events: ["postsync"]
+        showlogs: true
+        command: "kubectl"
+        args: ["apply", "-f", "../cert-manager"]
+
+  - name: harbor
+    namespace: harbor
+    chart: harbor/harbor
+    version: 1.5.2
+    values:
+      - "../harbor/values.yaml"
