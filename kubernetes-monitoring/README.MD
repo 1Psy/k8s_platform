@@ -82,7 +82,7 @@ helm upgrade --install prom-stack prometheus-community/kube-prometheus-stack \
 ```
 Наш чарт успешно разверут.
 
-![kube-prom-stack](https://github.com/1Psy/k8s_platform/blob/main/img/k8s_monitoring/kube-prom-stack.png)
+![kube-prom-stack](https://github.com/1Psy/k8s_platform/blob/main/img/kubernetes_monitoring/kube-prom-stack.png)
 
 Создадим **service**.
 ```yaml
@@ -127,12 +127,12 @@ servicemonitor.monitoring.coreos.com/nginx-metrics created
 kubectl port-forward svc/prom-stack-kube-prometheus-prometheus 9091:9090 -n monitoring
 ```
 ### Зайдем в **prometheus** http://localhost:9090/ и посмотрим **targets**.
-![sm_targets](https://github.com/1Psy/k8s_platform/blob/main/img/k8s_monitoring/sm_targets.png)
+![sm_targets](https://github.com/1Psy/k8s_platform/blob/main/img/kubernetes_monitoring/sm_targets.png)
 
 Enpoints наших pods доступны и метрики успешно поступают.
 
 ### Проверим, что метрики нашего приложения поступают.
-![nginx_metrics](https://github.com/1Psy/k8s_platform/blob/main/img/k8s_monitoring/nginx_metrics.png)
+![nginx_metrics](https://github.com/1Psy/k8s_platform/blob/main/img/kubernetes_monitoring/nginx_metrics.png)
 
 ## Grafana
 Пробросим порты и перейдем на http://localhost/ логин и пароль по-умолчанию  **admin prom-operator**.
@@ -143,6 +143,6 @@ Forwarding from [::1]:80 -> 3000
 ```
 Добавим в графану дашбор для **nginx-exporter** https://grafana.com/grafana/dashboards/12708
 
-![grafana_dashboard](https://github.com/1Psy/k8s_platform/blob/main/img/k8s_monitoring/grafana_dashboard.png)
+![grafana_dashboard](https://github.com/1Psy/k8s_platform/blob/main/img/kubernetes_monitoring/grafana_dashboard.png)
 
 Видим, что метрики успешно поступают из **prometheus** и выстраиваются в виде графиков.
