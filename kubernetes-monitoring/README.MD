@@ -144,4 +144,5 @@ Forwarding from [::1]:80 -> 3000
 Добавим в графану дашбор для **nginx-exporter** https://grafana.com/grafana/dashboards/12708
 
 ![grafana_dashboard](https://github.com/1Psy/k8s_platform/blob/main/img/kubernetes-monitoring/grafana_dashboard.png)
+
 Видим, что метрики успешно поступают из **prometheus** и выстраиваются в виде графиков.
