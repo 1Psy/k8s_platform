@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: travk/nginx:0.1
+          ports:
+            - containerPort: 8000
+        - name: nginx-exporter
+          image: nginx/nginx-prometheus-exporter:0.8.0
+          args:
+            - -nginx.scrape-uri=http://localhost:8000/basic_status
+          ports:
+            - name: metrics
+              containerPort: 9113 #Порт по которму exporter отдаёт метрики.

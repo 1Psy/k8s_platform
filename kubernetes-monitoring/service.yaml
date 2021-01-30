@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx-svc
+  labels:
+    app: nginx-svc
+spec:
+  selector:
+    app: nginx
+  ports:
+    - name: metrics
+      port: 9113
