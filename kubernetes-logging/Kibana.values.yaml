@@ -1,0 +1,26 @@
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  path: /
+  hosts:
+    - kibana.34.90.137.122.xip.io
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+tolerations:
+  - key: node-role
+    operator: Equal
+    value: infra
+    effect: NoSchedule
+
+nodeSelector:
+  cloud.google.com/gke-nodepool: infra-pool
+
+resources:
+  requests:
+    cpu: "250m"
+    memory: "256Mi"

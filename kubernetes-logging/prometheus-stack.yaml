@@ -1,0 +1,94 @@
+alertmanager:
+  ingress:
+    enabled: true
+    annotations:
+      ingressClassName: nginx
+    hosts:
+      - alertmanager.34.90.137.122.xip.io
+    paths:
+      - /
+  alertmanagerSpec:
+    tolerations:
+      - key: node-role
+        operator: Equal
+        value: infra
+        effect: NoSchedule
+
+    nodeSelector:
+      cloud.google.com/gke-nodepool: infra-pool
+grafana:
+  datasources:
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+        - name: Loki
+          type: loki
+          access: proxy
+          url: http://loki:3100
+          jsonData:
+            maxLines: 1000
+
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+    path: /
+    hosts:
+      - grafana.34.90.137.122.xip.io
+  tolerations:
+    - key: node-role
+      operator: Equal
+      value: infra
+      effect: NoSchedule
+
+  nodeSelector:
+    cloud.google.com/gke-nodepool: infra-pool
+prometheus:
+  prometheusSpec:
+    serviceMonitorSelectorNilUsesHelmValues: false
+    tolerations:
+      - key: node-role
+        operator: Equal
+        value: infra
+        effect: NoSchedule
+
+    nodeSelector:
+      cloud.google.com/gke-nodepool: infra-pool
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+
+    path: /
+    hosts:
+      - prometheus.34.90.137.122.xip.io
+prometheusOperator:
+  tolerations:
+    - key: node-role
+      operator: Equal
+      value: infra
+      effect: NoSchedule
+
+  nodeSelector:
+    cloud.google.com/gke-nodepool: infra-pool
+
+kube-state-metrics:
+  tolerations:
+    - key: node-role
+      operator: Equal
+      value: infra
+      effect: NoSchedule
+
+additionalPrometheusRulesMap:
+  elasticsearch-alertmanager.rules:
+    groups:
+      - name: elasticsearch
+        rules:
+          - alert: Elasticsearch_Too_Few_Nodes_Running
+            expr: elasticsearch_cluster_health_number_of_nodes < 3
+            for: 5m
+            labels:
+              severity: critical
+            annotations:
+              message: There are only {{$value}} < 3 ElasticSearch nodes running.
+              summary: ElasticSearch running on less than 3 nodes
