@@ -479,3 +479,8 @@ helm upgrade --install nginx-ingress ingress-nginx/ingress-nginx --wait \
 ![sm_ingress](https://github.com/1Psy/k8s_platform/blob/main/img/kubernetes-logging/sm_ingress.png)
 
 Создадим  **Dashboard** в файле **nginx-ingress.json**
+
+# Удалим кластер.
+```bash
+gcloud beta container clusters delete cluster-1
+```
