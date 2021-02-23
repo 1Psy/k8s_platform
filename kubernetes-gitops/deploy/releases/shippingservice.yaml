@@ -1,0 +1,21 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: shippingservice
+  namespace: microservices-demo
+  annotations:
+    fluxcd.io/ignore: "false"
+    fluxcd.io/automated: "true"
+    flux.weave.works/tag.chart-image: semver:~0.0
+spec:
+  releaseName: shippingservice
+  helmVersion: v3
+  chart:
+    git: git@gitlab.com:1Psy/microservices-demo.git
+    ref: master
+    path: deploy/charts/shippingservice
+  values:
+    image:
+      repository: travk/shippingservice
+      tag: v0.0.1

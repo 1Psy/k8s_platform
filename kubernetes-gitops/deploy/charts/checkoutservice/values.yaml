@@ -1,0 +1,3 @@
+image:
+  repository: travk/checkoutservice
+  tag: "v0.0.1"

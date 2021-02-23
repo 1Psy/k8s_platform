@@ -1,0 +1,3 @@
+image:
+  repository: travk/productcatalogservice
+  tag: "v0.0.1"

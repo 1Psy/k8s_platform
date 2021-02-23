@@ -1,0 +1,3 @@
+image:
+  repository: travk/recommendationservice
+  tag: "v0.0.1"

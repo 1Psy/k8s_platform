@@ -1,0 +1,3 @@
+image:
+  repository: travk/emailservice
+  tag: "v0.0.1"

@@ -1,0 +1,21 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: recommendationservice
+  namespace: microservices-demo
+  annotations:
+    fluxcd.io/ignore: "false"
+    fluxcd.io/automated: "true"
+    flux.weave.works/tag.chart-image: semver:~0.0
+spec:
+  releaseName: recommendationservice
+  helmVersion: v3
+  chart:
+    git: git@gitlab.com:1Psy/microservices-demo.git
+    ref: master
+    path: deploy/charts/recommendationservice
+  values:
+    image:
+      repository: travk/recommendationservice
+      tag: v0.0.1

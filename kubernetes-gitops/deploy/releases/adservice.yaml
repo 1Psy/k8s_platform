@@ -1,0 +1,21 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: adservice
+  namespace: microservices-demo
+  annotations:
+    fluxcd.io/ignore: "false"
+    fluxcd.io/automated: "true"
+    flux.weave.works/tag.chart-image: semver:~0.0
+spec:
+  releaseName: adservice
+  helmVersion: v3
+  chart:
+    git: git@gitlab.com:1Psy/microservices-demo.git
+    ref: master
+    path: deploy/charts/adservice
+  values:
+    image:
+      repository: travk/adservice
+      tag: v0.0.1

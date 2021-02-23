@@ -1,0 +1,21 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: frontend
+  namespace: microservices-demo
+  annotations:
+    fluxcd.io/ignore: "false"
+    fluxcd.io/automated: "true"
+    flux.weave.works/tag.chart-image: semver:~0.0
+spec:
+  releaseName: frontend
+  helmVersion: v3
+  chart:
+    git: git@gitlab.com:1Psy/microservices-demo.git
+    ref: master
+    path: deploy/charts/frontend
+  values:
+    image:
+      repository: travk/frontend
+      tag: v0.0.4
