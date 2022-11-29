@@ -12,7 +12,7 @@ gcloud container clusters create cluster-vault \
 ## Установка consul.
 Склонируем репозиторий **consul** и установим его.
 ```bash
-git clone https://github.com/hashicorp/consul-helm.git
+git clone https://github.com/hashicorp/consul-k8s/tree/main/charts/consul
 cd consul-helm
 helm install consul .
 ```
